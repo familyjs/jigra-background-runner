@@ -1,0 +1,81 @@
+{
+  "name": "@jigra/background-runner",
+  "version": "1.0.0",
+  "description": "Jigra Background Runner",
+  "main": "dist/plugin.cjs.js",
+  "module": "dist/esm/index.js",
+  "license": "MIT",
+  "types": "dist/esm/index.d.ts",
+  "unpkg": "dist/plugin.js",
+  "files": [
+    "android/src/main/",
+    "android/build.gradle",
+    "dist/",
+    "ios/Plugin/",
+    "scripts/install_libs.js",
+    "JigraBackgroundRunner.podspec"
+  ],
+  "author": "Family Team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/familyjs/jigra-background-runner.git"
+  },
+  "keywords": [
+    "jigra",
+    "plugin",
+    "native"
+  ],
+  "scripts": {
+    "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
+    "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
+    "verify:android": "cd android && ./gradlew clean build test && cd ..",
+    "verify:web": "npm run build",
+    "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
+    "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
+    "eslint": "eslint . --ext ts",
+    "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
+    "swiftlint": "node-swiftlint",
+    "docgen": "docgen --api BackgroundRunnerPlugin --output-readme README.md --output-json dist/docs.json",
+    "docgen-api": "docgen --api JigraAPI --output-readme API.md --output-json dist/docs-api.json && node ./scripts/combine_docs.js",
+    "build-sdk": "sh ./scripts/build-native-sdks.sh",
+    "build": "npm run clean && npm run docgen && npm run docgen-api && tsc && rollup -c rollup.config.js && npm run build-sdk && sh ./scripts/copy-native-sdks.sh && npm pack && mv ./jigra-background-runner-*.tgz ../../ && sh ./scripts/copy-readme.sh",
+    "pack": "npm run build && ./scripts/copy-native-sdks.sh && npm pack && mv ./jigra-background-runner-*.tgz ../../",
+    "clean": "rimraf ./dist",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build",
+    "postinstall": "node ./scripts/install_libs.js"
+  },
+  "devDependencies": {
+    "@familyjs/eslint-config": "^0.3.0",
+    "@familyjs/prettier-config": "^2.0.0",
+    "@familyjs/swiftlint": "^1.0.2",
+    "@familyjs/swiftlint-config": "^1.1.4",
+    "@jigra/android": "^5.7.0",
+    "@jigra/cli": "^5.7.0",
+    "@jigra/core": "^5.7.0",
+    "@jigra/docgen": "^0.0.18",
+    "@jigra/ios": "^5.7.0",
+    "eslint": "^7.32.0",
+    "prettier": "~2.3.2",
+    "prettier-plugin-java": "~2.1.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.79.1",
+    "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "@jigra/core": "^5.0.0"
+  },
+  "prettier": "@familyjs/prettier-config",
+  "swiftlint": "@familyjs/swiftlint-config",
+  "eslintConfig": {
+    "extends": "@familyjs/eslint-config/recommended"
+  },
+  "jigra": {
+    "ios": {
+      "src": "ios"
+    },
+    "android": {
+      "src": "android"
+    }
+  }
+}

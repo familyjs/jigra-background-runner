@@ -1,0 +1,14 @@
+{
+  "name": "ios-engine",
+  "private": true,
+  "scripts": {
+    "lint": " pnpm swiftlint lint",
+    "fmt": " pnpm swiftlint lint --fix --format",
+    "swiftlint": "node-swiftlint"
+  },
+  "dependencies": {
+    "@familyjs/swiftlint": "^1.0.2",
+    "@familyjs/swiftlint-config": "^1.1.4"
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,11 @@
+.idea/
+node_modules/
+.DS_Store
+dist/
+*.tgz
+.env
+.jigra/*
+!.jigra/e2e.env
+!.jigra/wdio.config.ts
+xcuserdata
+.turbo

@@ -7,4 +7,4 @@ JSValue api_kv_set(JSContext *ctx, JSValueConst this_val, int argc, JSValueConst
 JSValue api_kv_get(JSContext *ctx, JSValueConst this_val, int argc, JSValueConst *argv);
 JSValue api_kv_remove(JSContext *ctx, JSValueConst this_val, int argc, JSValueConst *argv);
 
-#endif //ANDROID_JS_ENGINE_API_KV_H
+#endif  // ANDROID_JS_ENGINE_API_KV_H

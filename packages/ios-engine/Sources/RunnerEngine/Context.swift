@@ -125,6 +125,7 @@ public class Context {
     }
 
     private func initTimer(callback: JSValue, timeout: Int, isInterval: Bool) -> Int {
+        // swiftlint:disable:next identifier_name
         let timer = Timer(timeInterval: TimeInterval(timeout / 1000), repeats: isInterval) { [weak self] t in
             guard let self = self else { return }
 

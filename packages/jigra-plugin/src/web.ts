@@ -1,15 +1,8 @@
 import { WebPlugin } from '@jigra/core';
 
-import type {
-  BackgroundRunnerPlugin,
-  DispatchEventOptions,
-  PermissionStatus,
-} from './definitions';
+import type { BackgroundRunnerPlugin, DispatchEventOptions, PermissionStatus } from './definitions';
 
-export class BackgroundRunnerWeb
-  extends WebPlugin
-  implements BackgroundRunnerPlugin
-{
+export class BackgroundRunnerWeb extends WebPlugin implements BackgroundRunnerPlugin {
   checkPermissions(): Promise<PermissionStatus> {
     throw new Error('not available on web');
   }

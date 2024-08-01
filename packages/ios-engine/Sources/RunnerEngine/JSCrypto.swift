@@ -14,17 +14,17 @@ class JSCrypto: NSObject, JSCryptoExports {
         _ = SecRandomCopyBytes(kSecRandomDefault, size, &rnd)
 
         if arr.toArray() as? [UInt8] != nil {
-            for i in 0...(size - 1) {
+            for i in 0...(size - 1) { // swiftlint:disable:this identifier_name
                 arr.setObject(rnd[i], atIndexedSubscript: i)
             }
         }
         if arr.toArray() as? [UInt16] != nil {
-            for i in 0...(size - 1) {
+            for i in 0...(size - 1) { // swiftlint:disable:this identifier_name
                 arr.setObject(UInt16(rnd[i]), atIndexedSubscript: i)
             }
         }
         if arr.toArray() as? [UInt32] != nil {
-            for i in 0...(size - 1) {
+            for i in 0...(size - 1) { // swiftlint:disable:this identifier_name
                 arr.setObject(UInt32(rnd[i]), forKeyedSubscript: i)
             }
         }

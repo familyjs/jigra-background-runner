@@ -6,4 +6,4 @@
 void init_text_encoder_class(JSContext *ctx);
 void init_text_decoder_class(JSContext *ctx);
 
-#endif //JIGRA_BACKGROUND_RUNNER_API_TEXT_H
+#endif  // JIGRA_BACKGROUND_RUNNER_API_TEXT_H
